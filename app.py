@@ -1,10 +1,11 @@
 from flask import url_for, escape
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
-
+name = 'chenpeng'
+stars = [{'name':'刘昊然','year':1997},{'name':'Troye sivan','year':1997}]
 @app.route('/')
-def hello():
-    return 'Hello'
+def index():
+    return render_template('index.html', name=name, stars=stars)
 
 @app.route('/user/<name>')
 def user_page(name):
