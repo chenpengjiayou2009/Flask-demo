@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" action="{{ url_for('add') }}" enctype="multipart/form-data">
+    Name <input type="text" name="name" autocomplete="off" required>
+    Year <input type="text" name="year" autocomplete="off" required>
+    Image <input type="file" name="image" autocomplete="off">
+    <input class="btn" type="submit" name="submit" value="Add">
+</form>
+{% if movies != None %}
+<p>{{ movies.length }}Movies</p>
+<ul class="movie-list">
+    {% for movie in movies %}
+    <li>
+        {% if movie.image %}
+            <img src="{{ url_for('static',filename=movie.image) }}" class="photo">
+        {% else %}
+            <img src="{{ url_for('static',filename='images/OIP.jpg') }}" class="photo">
+        {% endif %}
+        {{ movie.name }} - {{ movie.year }}
+        <span class="float-right">
+            {% if current_user.is_authenticated %}
+            <a class="btn" href="{{ url_for('edit', movie_id=movie.id) }}">Edit</a>
+            <form class="inline-form" method="post" action="{{ url_for('delete', movie_id=movie.id) }}">
+                <input class="btn" type="submit" name="delete" value="Delete" onclick="return confirm('Are you sure?')">
+            </form>
+            {% endif %}
+            <a class="douban" href="https://search.douban.com/movie/subject_search?search_text={{movie.name}}&cat=1002" target="_blank" title="Find this star on douban">Douban Link</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/harrypoter.gif') }}" title="to~to~ro~">
+{% endblock %}
