@@ -1,6 +1,6 @@
 import click
 from movieLife import app, db
-from movieLife.models import User
+from movieLife.models import User, Movie, Recommend
 
 @app.cli.command()  # 注册为命令
 @click.option('--drop', is_flag=True, help='Create after drop.')  # 设置选项
@@ -31,3 +31,13 @@ def admin(username, password):
 
     db.session.commit()
     click.echo('Done.')
+
+@app.cli.command()
+def forge():
+    movie = Movie(title="肖申克的救赎",year=2000,keywords="美国 励志")
+    movie2 = Movie(title="阿甘正传",year=2004,keywords="美国 励志")
+    recommend = Recommend(movieId=1,recId=2,score=0.9)
+    db.session.add(movie)
+    db.session.add(movie2)
+    db.session.add(recommend)
+    db.session.commit()

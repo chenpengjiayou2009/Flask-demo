@@ -1,20 +1,21 @@
 import os
 from movieLife import app, db
-from movieLife.models import User,Movie
+from movieLife.models import User,Movie, Recommend, Preference
 from flask import request, flash, redirect, url_for, render_template
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy import and_, or_
+from flask_paginate import Pagination
 
 # 主页
 @app.route('/')
-def home():
-    return render_template('base.html')
 @app.route('/index')
 @login_required
 def index():
+    page = int(request.args.get("page",0))
     user = User.query.filter(User.id==current_user.id).first()
-    movies = Movie.query.filter(Movie.userId==current_user.id).all()
-    return render_template('index.html', name=User.username, movies=movies)
+    movies = Movie.query.offset(page*20).limit(20).all()
+    pagination = Pagination(page=page,total=500)
+    return render_template('index.html', movies=movies, pagination=pagination)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -129,3 +130,44 @@ def edit(movie_id):
 @app.route('/admin')
 def user_page():
     return render_template("admin.html")
+
+@app.route('/movie/rec/<int:movie_id>')
+def rec(movie_id):
+    recs = Recommend.query.filter(Recommend.movieId==movie_id).all()
+    recSet = set()
+    for recItem in recs:
+        recId = recItem.recId
+        recSet.add(Movie.query.get(recId))
+    return render_template('recommend.html',recs=recSet)
+
+@app.route('/search',methods=['POST','GET'])
+def search():
+    if request.method == 'GET':
+        return render_template('search.html')
+    title = request.form['title']
+    results = Movie.query.filter(Movie.title.like('%{title}%'.format(title=title))).all()
+    return render_template('results.html',results=results)
+
+@app.route('/movie/like/<int:movie_id>',methods=['POST'])
+def like(movie_id):
+    userId = current_user.id
+    movieId = movie_id
+    preference = Preference(movieId=movieId,userId=userId)
+    db.session.add(preference)
+    db.session.commit()
+    flash("preference created")
+    return redirect(url_for('index'))
+
+@app.route('/user/like/<int:user_id>',methods=['GET'])
+def preference(user_id):
+    likes = Preference.query.filter(Preference.userId==user_id).order_by(Preference.id).all()
+    likeSet = []
+    for likeItem in likes:
+        likeId = likeItem.movieId
+        likeSet.append(Movie.query.get(likeId))
+    return render_template('like.html',likes=likeSet)
+
+
+
+
+

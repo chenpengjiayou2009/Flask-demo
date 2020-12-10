@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="movie-list">
+    {% for movie in recs %}
+    <li>
+        {% if movie.image %}
+            <img src="{{ url_for('static',filename=movie.image) }}" class="photo">
+        {% else %}
+            <img src="{{ url_for('static',filename='images/OIP.jpg') }}" class="photo">
+        {% endif %}
+        {{ movie.title }} - {{ movie.year }}
+        <span class="float-right">
+            <a class="douban" href="https://search.douban.com/movie/subject_search?search_text={{movie.name}}&cat=1002" target="_blank" title="如果您需要图片，可以前往网络搜索">Douban Link</a>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

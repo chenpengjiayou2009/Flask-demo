@@ -4,30 +4,35 @@
     {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 光影人生 </title>
+    <title> Python课程设计 </title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+<!--        <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css">-->
     {% endblock %}
 </head>
 <body>
 {% for message in get_flashed_messages() %}
 	<div class="alert">{{ message }}</div>
 {% endfor %}
-    <h2>
-        <img src="{{ url_for('static', filename='images/header.gif') }}"height="20" width="20">
-        光影人生
-    </h2>
-    <nav>
-        <ul>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
+<h2 class="blue-text">
+        Python课程设计
+</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
             {% if current_user.is_authenticated %}
-	        <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('preference',user_id=current_user.id) }}">Preference</a></li>
             {% else %}
-	        <li><a href="{{ url_for('login') }}">Login</a></li>
+	            <li><a href="{{ url_for('login') }}">Login</a></li>
             {% endif %}
-            <li><a href="{{ url_for('register') }}">Register</a></li>
-        </ul>
+                <li><a href="{{ url_for('search') }}">Search</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+
+            </ul>
+
     </nav>
+
     {% if current_user.is_authenticated==False %}
     <p>请登录或注册，然后开启您的光影记录</p>
     {% endif %}
@@ -35,5 +40,6 @@
     <footer>
         <small>Welcome to my <a href="{{ url_for('user_page') }}">Homepage</a></small>
     </footer>
+
 </body>
 </html>
