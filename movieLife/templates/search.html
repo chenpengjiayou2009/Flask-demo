@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="post" action="{{ url_for('search') }}">
+    Title <input type="text" name="title" required>
+    <input class="btn" type="submit" name="submit" value="search">
+</form>
+<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/harrypoter.gif') }}" title="to~to~ro~">
+{% endblock %}

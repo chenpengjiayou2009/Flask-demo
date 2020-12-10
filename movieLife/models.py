@@ -14,7 +14,18 @@ class User(db.Model, UserMixin):  # 表名将会是 user（自动生成，小写
 
 class Movie(db.Model):  # 表名将会是 movie
     id = db.Column(db.Integer, primary_key=True)  # 主键
-    name = db.Column(db.String(60))  # 明星的名字
-    year = db.Column(db.String(4))  # 明星出生的年份
+    title = db.Column(db.String(60))  # 电影的标题
+    year = db.Column(db.String(4))  # 电影的年份
+    keywords = db.Column(db.String(500)) # 电影的关键词，
     image = db.Column(db.String(200)) # 图片地址
+
+class Recommend(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    movieId = db.Column(db.Integer, db.ForeignKey('movie.id'))
+    recId = db.Column(db.Integer, db.ForeignKey('movie.id'))
+    score = db.Column(db.Float)
+
+class Preference(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer)
+    movieId = db.Column(db.Integer)

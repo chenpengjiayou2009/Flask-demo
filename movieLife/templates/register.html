@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3>Register</h3>
-<form method="post">
-    Username<br>
-    <input type="text" name="username" required><br><br>
-    Password<br>
-    <!-- 密码输入框的 type 属性使用 password，会将输入值显示为圆点 -->
-    <input type="password" name="password1" required><br><br>
-    Password Repeat<br>
-    <!-- 密码输入框的 type 属性使用 password，会将输入值显示为圆点 -->
-    <input type="password" name="password2" required><br><br>
-    <input class="btn" type="submit" name="submit" value="Submit">
-</form>
+<h3 class="center">欢迎注册</h3>
+<div class="login-form">
+    <form method="post">
+    <input class="validate login-input invalid" id="username-input" type="text" name="username" placeholder="username" required>
+    <input class="validate login-input invalid" type="password" name="password1" placeholder="password" required>
+    <input class="validate login-input invalid" type="password" name="password2" placeholder="password repeat" required>
+    <input class="btn" type="submit" name="submit" value="注册">
+    </form>
+</div>
+
 {% endblock %}
