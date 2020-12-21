@@ -4,8 +4,6 @@ from movieLife.models import User,Movie, Recommend, Preference
 from flask import request, flash, redirect, url_for, render_template
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy import and_, or_
-from flask_paginate import Pagination
-
 # 主页
 @app.route('/')
 @app.route('/index')
@@ -14,8 +12,7 @@ def index():
     page = int(request.args.get("page",0))
     user = User.query.filter(User.id==current_user.id).first()
     movies = Movie.query.offset(page*20).limit(20).all()
-    pagination = Pagination(page=page,total=500)
-    return render_template('index.html', movies=movies, pagination=pagination)
+    return render_template('index.html', movies=movies)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -133,11 +130,11 @@ def user_page():
 
 @app.route('/movie/rec/<int:movie_id>')
 def rec(movie_id):
-    recs = Recommend.query.filter(Recommend.movieId==movie_id).all()
-    recSet = set()
+    recs = Recommend.query.filter(Recommend.movieId==movie_id).order_by('id').all()
+    recSet = []
     for recItem in recs:
         recId = recItem.recId
-        recSet.add(Movie.query.get(recId))
+        recSet.append(Movie.query.get(recId))
     return render_template('recommend.html',recs=recSet)
 
 @app.route('/search',methods=['POST','GET'])

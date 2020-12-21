@@ -5,7 +5,7 @@
     {% for movie in recs %}
     <li>
         {% if movie.image %}
-            <img src="{{ url_for('static',filename=movie.image) }}" class="photo">
+            <img src="{{ movie.image }}" class="photo">
         {% else %}
             <img src="{{ url_for('static',filename='images/OIP.jpg') }}" class="photo">
         {% endif %}
