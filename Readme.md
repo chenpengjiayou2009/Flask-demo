@@ -1,3 +1,8 @@
+
+# 简易版仿豆瓣影视推荐系统
+## 链接地址 http://gogogoaquarius.pythonanywhere.com/
+
+
 ### 登录和注册
 
 数据库不直接存储用户名和密码，改用hashcode存储。
