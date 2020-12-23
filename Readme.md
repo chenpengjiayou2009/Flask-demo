@@ -32,3 +32,11 @@ Jieba分词将每部影片的简介分解为关键词，TF-IDFVectorizer 加 cos
 ### 编辑电影条目
 
 更改电影的名称，日期/也可以通过上传提交新增影片
+
+### 本地运行
+
+git clone
+
+pip install -r requirements.txt
+
+flask run
