@@ -4,3 +4,6 @@ __pycache__
 .DS_Store
 .env
 *.db
+env/*
+.flaskenv
+.idea/*
