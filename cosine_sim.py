@@ -3,7 +3,7 @@ import pymysql.cursors
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-connection = pymysql.connect(host="gogogoAquarius.mysql.pythonanywhere-services.com",
+connection = pymysql.connect(host="localhost",
                              port=3306,
                              user="gogogoAquarius",
                              password="chenpengjiayou19",
