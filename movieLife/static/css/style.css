@@ -142,3 +142,8 @@ input[type=text] {
     border-color: #b8daff;
     border-radius: 5px;
 }
+
+.page{
+    display: block;
+    text-align: center;
+}

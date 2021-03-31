@@ -32,7 +32,7 @@
     {% endfor %}
 </ul>
 {% for i in range(25) %}
-    <a href="/index?page={{ i }}">{{ i }}</a>
+    <a href="/index?page={{ i }}" class="page">{{ i }}</a>
 {% endfor %}
 {% endif %}
 <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/harrypoter.gif') }}" title="to~to~ro~">
