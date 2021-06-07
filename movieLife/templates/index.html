@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if current_user.is_authenticated %}
 <form method="post" action="{{ url_for('add') }}" enctype="multipart/form-data">
     Name <input type="text" name="name" autocomplete="off" required>
     Year <input type="text" name="year" autocomplete="off">
     Image <input type="file" name="image" autocomplete="off">
     <input class="btn" type="submit" name="submit" value="Add">
 </form>
+{% endif %}
 {% if movies != None %}
 <p>{{ movies.length }}Movies</p>
 <ul class="movie-list">
@@ -26,7 +28,7 @@
             </form>
             {% endif %}
             <a class="btn" href="{{ url_for('rec', movie_id=movie.id) }}">Recommend</a>
-            <a class="douban" href="https://search.douban.com/movie/subject_search?search_text={{movie.title}}&cat=1002" target="_blank" title="如果您需要图片，可以前往网络搜索">Douban Link</a>
+            <a class="douban" href="{{ url_for('detail', movie_id=movie.id)}}" target="_blank" title="">详情</a>
         </span>
     </li>
     {% endfor %}

@@ -1,16 +1,15 @@
 import os
 from movieLife import app, db
-from movieLife.models import User,Movie, Recommend, Preference
+from movieLife.models import *
 from flask import request, flash, redirect, url_for, render_template
 from flask_login import login_required, login_user, logout_user, current_user
 from sqlalchemy import and_, or_
 # 主页
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
     page = int(request.args.get("page",0))
-    user = User.query.filter(User.id==current_user.id).first()
+    # user = User.query.filter(User.id==current_user.id).first()
     movies = Movie.query.offset(page*20).limit(20).all()
     return render_template('index.html', movies=movies)
 
@@ -164,7 +163,19 @@ def preference(user_id):
         likeSet.append(Movie.query.get(likeId))
     return render_template('like.html',likes=likeSet)
 
+# @app('/movie/<int:movie_id>/rating',methods=['POST'])
+# @login_required
+# def rating(movie_id):
+#     user_id = current_user.id
+#     rating = request.form['rating']
+#     db_rating = Rating(user_id, movie_id, rating)
+#     db.session.add(db_rating)
+#     db.session.commit()
+#     flash("rating succeed")
+#     return redirect(url_for("index"))
 
-
-
+@app.route("/movie/<int:movie_id>")
+def detail(movie_id):
+    movie = Movie.query.get_or_404(movie_id)
+    return render_template("detail.html",movie=movie)
 

@@ -4,7 +4,7 @@
     {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Python课程设计 </title>
+    <title> Python课程设计（尚在开发中） </title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css">-->
@@ -33,9 +33,6 @@
 
     </nav>
 
-    {% if current_user.is_authenticated==False %}
-    <p>请登录或注册，然后开启您的光影记录</p>
-    {% endif %}
     {% block content %}{% endblock %}
     <footer>
         <small>Welcome to my <a href="{{ url_for('user_page') }}">Homepage</a></small>

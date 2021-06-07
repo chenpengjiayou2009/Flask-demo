@@ -29,3 +29,9 @@ class Preference(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer)
     movieId = db.Column(db.Integer)
+
+# class Rating(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     userid = db.Column(db.Integer)
+#     movieid = db.Column(db.Integer)
+#     rating = db.Column(db.Integer)
