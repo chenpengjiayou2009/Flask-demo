@@ -144,6 +144,10 @@ input[type=text] {
 }
 
 .page{
-    display: block;
-    text-align: center;
+    padding-right:3px;
+    padding-left:3px;
+    padding-bottom:3px;
+    margin:3px;
+    padding-top:3px;
+    text-align:center
 }
