@@ -177,5 +177,11 @@ def preference(user_id):
 @app.route("/movie/<int:movie_id>")
 def detail(movie_id):
     movie = Movie.query.get_or_404(movie_id)
-    return render_template("detail.html",movie=movie)
+    recs = Recommend.query.filter(Recommend.movieId == movie_id).order_by('id').limit(10).all()
+    recSet = []
+    for recItem in recs:
+        recId = recItem.recId
+        recSet.append(Movie.query.get(recId))
+    recs = recSet
+    return render_template("detail.html",movie=movie, recs=recs)
 
