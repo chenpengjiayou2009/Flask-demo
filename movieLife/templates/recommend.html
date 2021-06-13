@@ -1,19 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<ul class="movie-list">
-    {% for movie in recs %}
-    <li>
-        {% if movie.image %}
-            <img src="{{ movie.image }}" class="photo">
-        {% else %}
-            <img src="{{ url_for('static',filename='images/OIP.jpg') }}" class="photo">
-        {% endif %}
-        {{ movie.title }} - {{ movie.year }}
-        <span class="float-right">
-            <a class="douban" href="https://search.douban.com/movie/subject_search?search_text={{movie.name}}&cat=1002" target="_blank" title="如果您需要图片，可以前往网络搜索">Douban Link</a>
-        </span>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group list-group-flush">
+                {% for movie in recs %}
+                <li class="list-group-item" style="display: flex">
+                    {% if movie.image %}
+                        <img src="{{ movie.image }}" style="width: 20%;height: 30%">
+                    {% else %}
+                        <img src="{{ url_for('static',filename='images/OIP.jpg') }}" style="width: 20%;height: 30%">
+                    {% endif %}
+                    <div style="margin-left: 5%">
+                        <h4 style="margin-bottom: 4%;width: 800px">{{ movie.title }}</h4>
+                        <p>{{ movie.year }}</p>
+                        <div style="margin-top: 18%">
+                            <a class="btn btn-primary" href="https://search.douban.com/movie/subject_search?search_text={{movie.title}}&cat=1002" target="_blank" title="如果您需要图片，可以前往网络搜索">前往豆瓣</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}

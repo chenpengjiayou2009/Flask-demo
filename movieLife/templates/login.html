@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3 class="center">欢迎登陆</h3>
-<div class="login-form">
-    <form method="post">
-        <input  type="text" name="username" placeholder="username" required>
-        <input  type="password" name="password" placeholder="password" required>
-        <input class="btn" type="submit" name="submit" value="登录">
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h3 class="text-center" style="margin: 48px auto 24px">欢迎登陆</h3>
+            <form method="post">
+                <input  class="form-control" type="text" name="username" placeholder="请输入用户名" required style="margin-bottom: 24px">
+                <input  class="form-control" type="password" name="password" placeholder="请输入密码" required style="margin-bottom: 24px">
+                <input class="btn btn-info btn-block" type="submit" name="submit" value="登录">
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
 </div>
 
 {% endblock %}

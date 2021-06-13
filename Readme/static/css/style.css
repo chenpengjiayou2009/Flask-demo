@@ -1,0 +1,153 @@
+/* 页面整体 */
+body {
+    margin: auto;
+    max-width: 580px;
+    font-size: 14px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* 页脚 */
+footer {
+    color: #888;
+    margin-top: 15px;
+    text-align: center;
+    padding: 10px;
+}
+
+/* 头像 */
+.avatar {
+    width: 40px;
+}
+
+/* 电影列表 */
+.movie-list {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.movie-list li {
+    padding: 12px 24px;
+    border-bottom: 1px solid #ddd;
+}
+
+.movie-list li:last-child {
+    border-bottom:none;
+}
+
+.movie-list li:hover {
+    background-color: #f8f9fa;
+}
+
+
+/* 页脚图片 */
+.totoro {
+    display: block;
+    margin: 0 auto;
+    height: 80px;
+    bottom:0px;
+}
+/* 导航栏 */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+nav li {
+    float: left;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #111;
+}
+
+.photo{
+ width: 40px;
+ height: 60px;
+}
+/* 右对齐 */
+.float-right {
+    float: right;
+}
+
+/* 豆瓣链接按钮 */
+.douban {
+    font-size: 12px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    background: #F5C518;
+    border-radius: 5px;
+    padding: 3px 5px;
+}
+
+/* 输入 */
+input[type=submit] {
+    font-family: inherit;
+}
+
+input[type=file] {
+    font-family: inherit;
+    width: 80px;
+}
+
+input[type=text] {
+    border: 1px solid #ddd;
+    width: 80px;
+}
+
+/* 按钮 */
+.btn {
+    font-size: 12px;
+    display: inline-block;
+    padding: 2px 3px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid #555555;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.alert {
+    position: relative;
+    padding: 7px;
+    margin: 7px 0;
+    border: 1px solid transparent;
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+    border-radius: 5px;
+}
+
+.page{
+    padding-right:3px;
+    padding-left:3px;
+    padding-bottom:3px;
+    margin:3px;
+    padding-top:3px;
+    text-align:center
+}

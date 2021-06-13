@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h3 class="center">欢迎注册</h3>
-<div class="login-form">
-    <form method="post">
-    <input class="validate login-input invalid" id="username-input" type="text" name="username" placeholder="username" required>
-    <input class="validate login-input invalid" type="password" name="password1" placeholder="password" required>
-    <input class="validate login-input invalid" type="password" name="password2" placeholder="password repeat" required>
-    <input class="btn" type="submit" name="submit" value="注册">
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h3 class="text-center" style="margin: 48px auto 24px">欢迎注册</h3>
+            <form method="post">
+                <input class="form-control validate login-input invalid" id="username-input" type="text" name="username" placeholder="请输入用户名" required style="margin-bottom: 12px">
+                <input class="form-control validate login-input invalid" type="password" name="password1" placeholder="请输入密码" required style="margin-bottom: 12px">
+                <input class="form-control validate login-input invalid" type="password" name="password2" placeholder="请确认密码" required style="margin-bottom: 24px">
+                <input class="btn btn-info btn-block" type="submit" name="submit" value="注册">
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
 </div>
 
 {% endblock %}

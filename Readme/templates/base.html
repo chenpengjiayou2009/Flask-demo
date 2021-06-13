@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> fresh potatoes（尚在开发中） </title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css">-->
+    {% endblock %}
+</head>
+<body>
+{% for message in get_flashed_messages() %}
+	<div class="alert">{{ message }}</div>
+{% endfor %}
+<h2 class="blue-text">
+        fresh potatoes 影视推荐系统
+</h2>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('preference',user_id=current_user.id) }}">Preference</a></li>
+            {% else %}
+	            <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+                <li><a href="{{ url_for('search') }}">Search</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+
+            </ul>
+
+    </nav>
+
+    {% block content %}{% endblock %}
+    <footer>
+        <small>Welcome to my <a href="{{ url_for('user_page') }}">Homepage</a></small>
+    </footer>
+
+</body>
+</html>

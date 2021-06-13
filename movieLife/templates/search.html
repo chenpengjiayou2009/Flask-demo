@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<form method="post" action="{{ url_for('search') }}">
-    Title <input type="text" name="title" required>
-    <input class="btn" type="submit" name="submit" value="search">
-</form>
-<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/harrypoter.gif') }}" title="to~to~ro~">
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form method="post" action="{{ url_for('search') }}" style="margin-top: 48px;margin-bottom: 48px">
+                请输入电影标题： <input type="text" name="title" required>
+                <input class="btnn" type="submit" name="submit" value="搜索">
+            </form>
+            <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/harrypoter.gif') }}" title="to~to~ro~">
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
 {% endblock %}

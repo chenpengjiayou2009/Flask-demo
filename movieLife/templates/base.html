@@ -4,38 +4,50 @@
     {% block head %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Python课程设计（尚在开发中） </title>
+    <title> FreshPotatoes（尚在开发中） </title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css">-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_add.css') }}">
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">#}
+{#    <!--<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}" type="text/css">-->#}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
     {% endblock %}
 </head>
 <body>
-{% for message in get_flashed_messages() %}
-	<div class="alert">{{ message }}</div>
-{% endfor %}
-<h2 class="blue-text">
-        Python课程设计
-</h2>
-        <nav>
-            <ul>
-                <li><a href="{{ url_for('index') }}">Home</a></li>
-            {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                <li><a href="{{ url_for('preference',user_id=current_user.id) }}">Preference</a></li>
-            {% else %}
-	            <li><a href="{{ url_for('login') }}">Login</a></li>
-            {% endif %}
-                <li><a href="{{ url_for('search') }}">Search</a></li>
-                <li><a href="{{ url_for('register') }}">Register</a></li>
-
-            </ul>
-
-    </nav>
-
+<div class="container" style="margin-top: 24px;color: #505050">
+    <h2 class="blue-text" style="margin-bottom: 20px">
+        FreshPotatoes
+    </h2>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+                <div class="container">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">主页</a></li>
+                    {% if current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">退出登录</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('preference',user_id=current_user.id) }}">收藏</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">登录</a></li>
+                    {% endif %}
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('search') }}">搜索</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">注册</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {% for message in get_flashed_messages() %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
     {% block content %}{% endblock %}
-    <footer>
-        <small>Welcome to my <a href="{{ url_for('user_page') }}">Homepage</a></small>
+</div>
+    <footer style="margin-top: 64px;color: #6c757d">
     </footer>
 
 </body>

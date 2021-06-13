@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3 class="center">欢迎登陆</h3>
+<div class="login-form">
+    <form method="post">
+        <input  type="text" name="username" placeholder="username" required>
+        <input  type="password" name="password" placeholder="password" required>
+        <input class="btn" type="submit" name="submit" value="登录">
+    </form>
+</div>
+
+{% endblock %}

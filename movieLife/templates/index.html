@@ -1,41 +1,62 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if current_user.is_authenticated %}
-<form method="post" action="{{ url_for('add') }}" enctype="multipart/form-data">
-    Name <input type="text" name="name" autocomplete="off" required>
-    Year <input type="text" name="year" autocomplete="off">
-    Image <input type="file" name="image" autocomplete="off">
-    <input class="btn" type="submit" name="submit" value="Add">
-</form>
-{% endif %}
+    {% if current_user.is_authenticated %}
+<div class="container" style="margin-top: 20px">
+    <div class="row">
+        <form method="post" action="{{ url_for('add') }}" enctype="multipart/form-data">
+            电影名称 <input type="text" name="name" autocomplete="off" required>
+            电影年份 <input type="text" name="year" autocomplete="off">
+            电影海报 <input type="file" name="image" autocomplete="off">
+            <input class="btnn" type="submit" name="submit" value="确认添加">
+        </form>
+    </div>
+</div>
+    {% endif %}
 {% if movies != None %}
-<p>{{ movies.length }}Movies</p>
-<ul class="movie-list">
-    {% for movie in movies %}
-    <li>
-        {% if movie.image %}
-            <img src="{{ movie.image }}" class="photo">
-        {% else %}
-            <img src="{{ url_for('static',filename='images/OIP.jpg') }}" class="photo">
-        {% endif %}
-        {{ movie.title }} - {{ movie.year }}
-        <span class="float-right">
-            {% if current_user.is_authenticated %}
-            <a class="btn" href="{{ url_for('edit', movie_id=movie.id) }}">Edit</a>
-            <form class="inline-form" method="post" action="{{ url_for('like', movie_id=movie.id) }}">
-                <input class="btn" type="submit" name="like" value="Like">
-            </form>
-            {% endif %}
-            <a class="btn" href="{{ url_for('rec', movie_id=movie.id) }}">Recommend</a>
-            <a class="douban" href="{{ url_for('detail', movie_id=movie.id)}}" target="_blank" title="">详情</a>
-        </span>
-    </li>
-    {% endfor %}
-</ul>
-{% for i in range(25) %}
-    <a href="/index?page={{ i }}" class="page">{{ i }}</a>
-{% endfor %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="text-center" style="margin: 24px auto">{{ movies.length }}电影推荐</h3>
+            <ul class="list-group list-group-flush">
+                {% for movie in movies %}
+                <li class="list-group-item" style="display: flex">
+                    {% if movie.image %}
+                        <img src="{{ movie.image }}" style="width: 20%;height: 30%">
+                    {% else %}
+                        <img src="{{ url_for('static',filename='images/backup.jpg') }}" style="width: 20%;height: 30%">
+                    {% endif %}
+                    <div style="margin-left: 5%">
+                        <h4 style="margin-bottom: 4%;width: 800px">{{ movie.title }}</h4>
+                        <p>{{ movie.year }}</p>
+                        <div style="margin-top: 18%">
+                            {% if current_user.is_authenticated %}
+                            <a class="btn" href="{{ url_for('edit', movie_id=movie.id) }}">编辑</a>
+                            <form style="display: inline-block" method="post" action="{{ url_for('like', movie_id=movie.id) }}">
+                                <input class="btn" type="submit" name="like" value="喜爱">
+                            </form>
+                            {% endif %}
+                            <a class="btn btn-info" href="{{ url_for('rec', movie_id=movie.id) }}" style="margin-right: 1%">相似推荐</a>
+                            <a class="btn btn-primary" href="{{ url_for('detail',movie_id=movie.id) }}" target="_blank">详情</a>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <ul class="pagination pagination-sm">
+            {% for i in range(25) %}
+                <li class="page-item">
+                    <a class="page-link" href="/index?page={{ i }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endif %}
-<img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/harrypoter.gif') }}" title="to~to~ro~">
 {% endblock %}
