@@ -11,12 +11,12 @@
             {% for result in results %}
             <li class="list-group-item" style="display: flex">
                 {% if result.image %}
-                    <a href="{{ url_for('detail', movie_id=result.id) }}"><img src="{{ result.image }}" style="width: 20%;height: 30%"></a>
+                    <a href="{{ url_for('detail', movie_id=result.id) }}"><img src="{{ result.image }}" style="width: 100px;height: 90%"></a>
                 {% else %}
                     <img src="{{ url_for('static',filename='images/backup.jpg') }}" style="width: 20%;height: 30%">
                 {% endif %}
                 <div style="margin-left: 5%">
-                    <h4 style="margin-bottom: 4%;width: 800px">{{ result.title }}</h4>
+                    <h4 style="margin-bottom: 4%;width: 700px">{{ result.title }}</h4>
                     <p>{{ result.year }}</p>
                     <span class="float-right">
                         <a class="btn btn-primary" href="{{ url_for('detail',movie_id=result.id) }}">详情</a>
